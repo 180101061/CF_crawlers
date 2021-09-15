@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{load static}
+
+{% block T %}
+CF Crawler
+{% endblock %}
+
+{% block B %}
+<div class="container mt-5 ">
+	<div class="jumbotron" style="background-color: lightgreen;">
+<h1 style="float: left;">
+    <b>CODEFORCES CRAWLER</b>
+</h1>
+<form style="float: right;" method="post" action="{% url 'Codeforces:home' %}">
+	{% csrf_token %}
+	<label for="handle" >Input Handle</label>
+	<input type="text" name="handle"></input>
+	{% if flag %}<h6 style="color:red;">ERR! Enter Correct Handle ! </h6>{% endif %}
+</form>
+</div>
+</div>
+<div class="container ">
+	
+<div class="jumbotron" style="background-color: lightgray;">
+    <table>
+        <tr>
+            <th>
+                Upcoming Contest
+            </th>
+            <th>
+                Date and Time
+            </th>
+        </tr>
+        {% for i in cfcontests %}
+            <tr>
+                <td>{{i.con}}</td>
+                <td>{{i.time}}</td>
+            </tr>
+        {% endfor %}
+    </table>
+</div>
+<br>
+
+</div>
+
+{% endblock %}
